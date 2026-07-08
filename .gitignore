@@ -299,3 +299,7 @@ examples/*/generated/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+.code2llm_cache/
+.github/
+.pyqual/
+.testql-auto/
