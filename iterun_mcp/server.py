@@ -11,6 +11,7 @@ Usage (from iterun repo root):
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -18,6 +19,31 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from interfaces.service import IterunService
 from parser.dsl_parser import ParseError, ValidationError
+
+_TRUE_VALUES = frozenset({"1", "true", "yes", "on"})
+
+
+def _enabled(name: str) -> bool:
+    return os.getenv(name, "").strip().lower() in _TRUE_VALUES
+
+
+def _require_permission(name: str, action: str) -> None:
+    if not _enabled(name):
+        raise PermissionError(f"{action} through MCP is disabled; set {name}=1 to enable it")
+
+
+def _workspace_root() -> Path:
+    return Path(os.getenv("ITERUN_MCP_WORKSPACE_ROOT", ".")).expanduser().resolve()
+
+
+def _require_workspace_path(raw_path: str) -> None:
+    candidate = Path(raw_path).expanduser().resolve(strict=False)
+    try:
+        candidate.relative_to(_workspace_root())
+    except ValueError as exc:
+        raise PermissionError(
+            "iterun MCP path is outside ITERUN_MCP_WORKSPACE_ROOT"
+        ) from exc
 
 try:
     from mcp.server.fastmcp import FastMCP
@@ -53,6 +79,9 @@ try:
     def iterun_plan_yaml(yaml_content: str, output_dir: str | None = None) -> str:
         """Dry-run plan from YAML — generates Dockerfile(s) and docker-compose for STACK."""
         try:
+            if output_dir:
+                _require_permission("ITERUN_MCP_ALLOW_MUTATION", "artifact writes")
+                _require_workspace_path(output_dir)
             return json.dumps(
                 _service.plan_yaml(yaml_content, output_dir=output_dir),
                 indent=2,
@@ -81,6 +110,10 @@ try:
         model: str | None = None,
     ) -> str:
         """Full pipeline: prompt → iterun.yaml → plan → optional Docker execute → optional verify."""
+        _require_permission("ITERUN_MCP_ALLOW_MUTATION", "pipeline artifact writes")
+        _require_workspace_path(output_dir)
+        if execute:
+            _require_permission("ITERUN_MCP_ALLOW_EXECUTE", "Docker execution")
         result = _service.run_pipeline(
             prompt,
             output_dir=output_dir,
@@ -98,6 +131,8 @@ try:
         include_docker: bool = True,
     ) -> str:
         """Refresh service/artifact registry (iterun.registry.json, Backstage, OTel)."""
+        _require_permission("ITERUN_MCP_ALLOW_MUTATION", "registry writes")
+        _require_workspace_path(workspace)
         return json.dumps(
             _service.registry_refresh(workspace, include_docker=include_docker),
             indent=2,
@@ -106,6 +141,7 @@ try:
     @mcp.tool()
     def iterun_registry_list(pattern: str = "examples/*/generated") -> str:
         """List registry summaries for workspace glob pattern."""
+        _require_workspace_path(pattern)
         return json.dumps({"registries": _service.registry_list(pattern)}, indent=2)
 
     @mcp.tool()

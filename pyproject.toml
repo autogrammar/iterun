@@ -39,7 +39,7 @@ ai = [
 ]
 mcp = [
     "litellm>=1.0.0",
-    "mcp>=1.0.0",
+    "mcp>=1.0.0,<2",
 ]
 runtime = [
     "markpact>=0.1.40",

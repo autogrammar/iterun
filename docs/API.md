@@ -121,11 +121,21 @@ iterun-mcp
   "mcpServers": {
     "iterun": {
       "command": "iterun-mcp",
-      "cwd": "/path/to/iterun"
+      "cwd": "/path/to/iterun",
+      "env": {
+        "ITERUN_MCP_ALLOW_MUTATION": "1",
+        "ITERUN_MCP_ALLOW_EXECUTE": "0"
+      }
     }
   }
 }
 ```
+
+MCP domyślnie nie zapisuje artefaktów ani nie uruchamia Dockera. Zapis wymaga
+`ITERUN_MCP_ALLOW_MUTATION=1`, a `execute=true` dodatkowo
+`ITERUN_MCP_ALLOW_EXECUTE=1`. Ścieżki zapisu i wzorce odczytu są ograniczone do
+bieżącego katalogu; inny korzeń można jawnie wskazać przez
+`ITERUN_MCP_WORKSPACE_ROOT`.
 
 ## Registry (usługi i artefakty)
 
