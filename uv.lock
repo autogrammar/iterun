@@ -471,7 +471,7 @@ wheels = [
 
 [[package]]
 name = "costs"
-version = "0.1.51"
+version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anthropic" },
@@ -484,9 +484,9 @@ dependencies = [
     { name = "tiktoken" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/92/2c/d9f9a9c0acd33bc40788aaeef792fe045efd42368cde2ad00a0e15eeb625/costs-0.1.51.tar.gz", hash = "sha256:727f5f14874c41731e2485cc309ec4cc87c447288c8be4c0ddb38f72391d49cc", size = 30777, upload-time = "2026-05-12T08:33:20.439Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e4/6f/7f3c72d6d4b5264bd5a3447e18a3b5184bffee143f72c8d023bb759afd1a/costs-0.2.0.tar.gz", hash = "sha256:3782bae859725dae30f697b5f3e5aa5d84e06feadebc5782ae706e21d46437af", size = 44606, upload-time = "2026-09-05T15:49:55.524Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/81/15/4490e3afc8e0e903a984582db06a34ec9feeddf52ef99902d456a2e15da5/costs-0.1.51-py3-none-any.whl", hash = "sha256:15e2ebf518fec04e5883612d96dd2673f56cbeaf58408e448eb0837c01a2dc85", size = 35771, upload-time = "2026-05-12T08:33:19.271Z" },
+    { url = "https://files.pythonhosted.org/packages/1d/7e/fc91d9fdc7a1ceb9116daffab27124a54f6e8887c9d59d906df43dcbfa6a/costs-0.2.0-py3-none-any.whl", hash = "sha256:4798b8535cbbcbb354e440ebce91365f17c910414bf5831a0610998ae6e679af", size = 48625, upload-time = "2026-09-05T15:49:54.054Z" },
 ]
 
 [[package]]
@@ -825,7 +825,7 @@ wheels = [
 
 [[package]]
 name = "goal"
-version = "2.1.241"
+version = "2.1.284"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -835,9 +835,9 @@ dependencies = [
     { name = "tomlkit" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a2/6d/0bf7f34135c9db8edd985a17deb2b684712363ef042b318da9aea092b221/goal-2.1.241.tar.gz", hash = "sha256:0037ecfa3d6de154055d0647f0a30d652b31599ad09ad850abf6aa3744cc406c", size = 272391, upload-time = "2026-06-03T12:33:30.868Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bf/ed/3ef5beaa56627e95a66269adcfce7c219fff1948b93fc6f2f209fb0cea66/goal-2.1.284.tar.gz", hash = "sha256:61d47e6b68ba499fefad17b3df4bc4b6647da9db80a5dbc0918165c81d3f8ab1", size = 334328, upload-time = "2026-07-23T19:42:09.372Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/48/c6/5cb4ef4c038a53d51672005c19c06cf0594eb532870301e7df43559c524e/goal-2.1.241-py3-none-any.whl", hash = "sha256:89faf7b8126d31de716c1af276cc052018263de9ce478b536e7b2e98f1fe0c7b", size = 268712, upload-time = "2026-06-03T12:33:28.881Z" },
+    { url = "https://files.pythonhosted.org/packages/09/30/8155e85057ef3a8871f04db2a14b10d2216c0af68957f36f0417c2b44821/goal-2.1.284-py3-none-any.whl", hash = "sha256:d00dab399a774d07da902e1ef42ad5282e513e65410bace0c3185b555f365777", size = 309816, upload-time = "2026-07-23T19:42:07.494Z" },
 ]
 
 [[package]]
@@ -1043,7 +1043,7 @@ requires-dist = [
     { name = "litellm", marker = "extra == 'ai'", specifier = ">=1.0.0" },
     { name = "litellm", marker = "extra == 'mcp'", specifier = ">=1.0.0" },
     { name = "markpact", marker = "extra == 'runtime'", specifier = ">=0.1.40" },
-    { name = "mcp", marker = "extra == 'mcp'", specifier = ">=1.0.0" },
+    { name = "mcp", marker = "extra == 'mcp'", specifier = ">=1.0.0,<2" },
     { name = "pactown", marker = "extra == 'runtime'", specifier = ">=0.1.0" },
     { name = "pfix", marker = "extra == 'dev'", specifier = ">=0.1.60" },
     { name = "pydantic", specifier = ">=2.0" },
@@ -1821,7 +1821,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess", marker = "sys_platform != 'win32'" },
+    { name = "ptyprocess" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
