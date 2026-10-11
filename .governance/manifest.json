@@ -109,7 +109,11 @@
           "events/**",
           "error/**",
           "models/**",
-          "proto/**"
+          "proto/**",
+          ".governance/manifest.json",
+          ".github/workflows/ci.yml",
+          "cli/**",
+          "tests/**"
         ]
       },
       "interfaces": {
