@@ -79,6 +79,11 @@ Examples:
 
 
 def main() -> None:
+    try:
+        from .autoupdate import check_for_updates
+        check_for_updates("iterun")
+    except Exception:
+        pass
     parser = build_parser()
     args = parser.parse_args()
 
